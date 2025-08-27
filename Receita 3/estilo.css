@@ -1,0 +1,5 @@
+/* Exercício 3 */
+#mainDiv {
+    transition: opacity 1s;
+    opacity: 0;
+}

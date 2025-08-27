@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="UTF-8"> 
+      <link href="estilo.css" rel="stylesheet">     
+   </head>
+
+   <body> <!-- Exercício 1 -->
+      <div id="mainDiv"></div>
+      
+      <div>
+        <button id="botaoCarregar">Carregar cervejas</button>
+      </div>
+   </body>   
+
+   <script>
+    let div = document.getElementById("mainDiv")
+      function carregarDiv() {
+        div.innerHTML = `<h1>Guinness</h1>` 
+        div.style.opacity = "1";
+      }       
+
+      function apagarDiv() {
+        div.style.opacity = "0";
+        div.addEventListener("transitionend", function limpar() {
+            div.innerHTML = '';
+            div.removeEventListener("transitionend", limpar);
+        });
+      }
+
+    /* Exercício 2 */
+      let botao = document.getElementById("botaoCarregar")
+      botao.addEventListener("click", function() {
+        if (div.innerHTML === "") {
+            carregarDiv()
+        } else {
+            apagarDiv()
+        }
+      })
+    </script>
+
+</html>

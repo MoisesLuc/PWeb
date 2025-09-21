@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="UTF-8">      
+
+      <style>
+        div.items {
+            font-size: 200%;
+            color: blue;
+        }
+
+        table.items {
+            border: 1px solid black;
+            width: 150px;
+            padding: 8px;
+            background-color: green;
+            color: white;
+        }
+      </style>
+   </head>
+
+   <body>
+      <div id="meu amor">
+        <a href="#" id="botaoCarregar" class="action-link">Carregando sorvetes...</a>
+      </div>        
+      <div> 
+        <a href="#" id="botaoOrdenar" class="action-link">Ordenar sorvetes</a> 
+        <a href="#" id="botaoEmbaralhar" class="action-link">Embaralhar sorvetes</a> 
+      </div>               
+   </body>   
+
+   <script>
+      let sorvetes = ["Chocolate", "Morango", "Creme"]
+
+      const carregarDiv = (sorvs) => {
+         const div = document.getElementById("meu amor")
+         const sorvetesHtml = sorvs.map(item => `<table class="items"%>
+                                                   <tr>
+                                                     <th>${item}</th>
+                                                   </tr>
+                                                 </table>`)
+         div.innerHTML = `${sorvetesHtml.join("\n")}`
+      }
+
+      const ordernarsorvetes = () => {
+        const cerv_ordenada = sorvetes.sort()
+        carregarDiv(cerv_ordenada)
+      }
+
+      const shuffleArray = (array) => { // Algorítimo de Fisher-Yates
+        let currentIndex = array.length;
+        let randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex !== 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+      }
+
+      const embaralharsorvetes = () => {
+        const cerv_embaralhada = shuffleArray(sorvetes)
+        carregarDiv(cerv_embaralhada)
+      }
+    
+      // Exercício 1
+      document.getElementById("botaoCarregar").addEventListener("click", () => carregarDiv(sorvetes))    
+      document.getElementById("botaoOrdenar").addEventListener("click", ordernarsorvetes) 
+      document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharsorvetes)                            
+    </script>
+</html>
